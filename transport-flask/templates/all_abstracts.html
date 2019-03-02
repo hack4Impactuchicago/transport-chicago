@@ -1,0 +1,48 @@
+<head>
+	<title>Edit a Review</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style>
+		table tr th, table tr td {font-size: 12px;}
+		td {text-align: center;}
+		td.time, td.title {text-align: left}
+		div.tips {padding: 5px; border-radius: 5px; margin-bottom: 2px;}
+	</style>
+</head>
+<body>
+<div style='background-color: #eee; padding: 0 20px'>Hello <?php echo $reviewer_name;?> | <a href='welcome.php'>Reviewer Home</a> | <a href='tagging.php'>Review a Random Abstract</a> | <a href='index.php'>Log Off</a></div>
+<div class="container">
+	<h1><?php echo $reviewer_name; ?>'s Reviews</h1>
+	<div class="form-group">
+		<label for="reviewer_email">Email address</label>
+		<input name='reviewer_id' type="email" class="form-control" value=<?php echo "'" . $reviewer_email. "'";?> readonly="readonly">
+	</div>
+	<?php echo $yay; ?>
+	<h4>Rating guidelines</h4>
+	<ul>
+		<li>1: 💩 (happy poo, not so good abstract)</li>
+		<li>5: 🌟 (gold star is a good star)</li>
+	</ul>
+	<div class='bg-warning tips'><p>Tip: Rotate your phone to get maximum width to better see the table</p></div>
+	<div class='table-responsive'>
+		<table class="table table-striped table-bordered">
+		  <tr>
+		  	<th class=''>Abstract ID</th>
+		  	<th class=''>Abstract Author</th>
+		  	<th class=''>Affiliation</th>
+		  	<th class='title'>Abstract Title</th>
+		  	<th class='time'>Review Submitted</th>
+		  	<th>Overall Score</th>
+		  	<th>Within Parameters</th>
+		  	<th>Timely &amp; Relevant</th>
+		  	<th>Well Written</th>
+		  	<th>Original &amp; Innovative</th>
+		  	<th>Sound &amp; Credible</th>
+		  	<th>Edit?</th>
+		  </tr>
+		  <?php echo $table_html; ?>
+		</table>
+	</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>

@@ -1,0 +1,69 @@
+<head>
+	<title>Abstract Review</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+<div style='background-color: #eee; padding: 0 20px'>Hello <?php echo $reviewer_name;?> | <a href='welcome.php'>Reviewer Home</a> | <a href='edit.php'>Edit a Submitted Review</a> | <a href='index.php'>Log Off</a></div>
+<div class="container">
+	<h1>Abstract Review</h1>
+	<h2>Guidelines</h2>
+	<div class="bg-info" style="padding: 5px;">
+		<p>The abstract reviews are being conducted double blind, though authors will be unmasked during the committee meeting.  Things to consider:
+		<ul>
+			<li><strong>Parameters</strong>: Does it meet the overal spirit of Transport Chicago?</li>
+			<li><strong>Timeliness</strong>: Is the topic of new or state of the art practice?</li>
+			<li><strong>Writing</strong>: Is the abstract well written, including grammar and wordiness?</li>
+			<li><strong>Originality</strong>: Is this article new?  Have you seen it before?</li>
+			<li><strong>Credibility</strong>: Is the author credible? Do they provide enough supporting evidence?</li>
+			<li><strong>Conflicts of Interest</strong>: Can you clearly unmask the author based on your work?  Is it a conflict of interest, such as a close co-worker or in a direct report/supervisor? If so, please note it at the bottom, no need to answer the other questions</li>
+		</ul>
+		Remember, we'll be discussing all the abstracts during the committee meeting.
+		</p>
+	</div>
+
+	<h2><?php echo $chosen_one['title'];?><br />
+		<small>
+			<strong>
+				<?php
+					//echo "xxxxxxxxx";
+					echo $chosen_one['author'];
+				?></strong> &mdash;
+			<em><?php echo $chosen_one['affiliation'];?></em>
+		</small>
+	</h2>
+	<!-- <h3>Article number: <?//php echo $chosen_one['id'];?></h3> -->
+	<h3>Presentation Type: <?php echo $chosen_one['pres_type'];?></h3>
+	<p><?php echo $chosen_one['abstract'];?></p>
+	<h3>Learning Objectives</h3>
+	<ol>
+		<li><?php echo $chosen_one['learn1'];?></li>
+		<li><?php echo $chosen_one['learn2'];?></li>
+	</ol>
+	<h3>Application to Professional Practice</h3>
+	<p><?php echo $chosen_one['application'];?></p>
+<hr />
+<h4>Rating guidelines</h4>
+<ul>
+	<li>💩 (happy poo, not so good abstract)</li>
+	<li>🌟 (gold star is a good star)</li>
+</ul>
+<form action='omnom.php' method='post'>
+	<div class="form-group">
+		<label for="reviewer_email">Email address</label>
+		<input name='reviewer_id' type="email" class="form-control" value=<?php echo "'" . $reviewer_email. "'";?> readonly="readonly">
+	</div>
+	<input name='article_id' type="hidden" value=<?php echo "'" . $chosen_one['id']. "'";?> >
+	<input name='article_name' type="hidden" value=<?php echo "'" . $chosen_one['title'] . "'";?> >
+	<input name='score_id' type="hidden" value=<?php echo "'" . $sid . "'";?> >
+
+	<? echo $all_scoring_html; ?>
+
+  	<button type="submit" class="btn btn-lg">Submit</button>
+</form>
+<br />
+
+<?php echo $dropdown;?>
+</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>

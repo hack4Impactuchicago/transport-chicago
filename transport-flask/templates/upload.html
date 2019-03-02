@@ -1,0 +1,30 @@
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Transport Chicago Beta Uploader</title>
+        <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <h3>Transport Chicago 2017 File Upload</h3>
+
+            <p>Click the green <b>"View"</b> button to enter a folder.  Click <b>"Go Home"</b> to return to the full list of folders<p>
+            <ul>
+                <li><p><button class="btn btn-xs btn-primary" onclick="backDirectory()">Go Home</button></p></li>
+                <p><input type="file" id="files" name="file" onclick="displayProcess(0)" /></p></li>
+                <li><p><button id="upload-button" class="btn btn-xs btn-primary" onclick="createFileFromStream(false)">Upload File</button> to current directory</p>
+
+            </ul>
+
+            <b>Current Path:<a id="path"></a></b>
+            <div> Uploaded Bytes: <font id="read"> </font> </div>
+            <div class="progress">
+                <div id="progress" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                    0%
+                </div>
+            </div>
+            <div id="directoryFiles"></div>
+
+
+        </div>
+</body>
