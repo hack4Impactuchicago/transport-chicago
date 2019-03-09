@@ -7,15 +7,15 @@
 	<h1>Transport Chicago 2018 Abstract Review Site</h1>
 	<p>Hello <?php echo $reviewer_name; ?></p>
 <!-- Previous User -->
-	<p>Welcome back to the 2018 review site.  To enter, please use the email address you used to register.  If you haven't registered yet, just enter your name and email address and you'll be registered.  I promise that you won't get any automated emails by providing an email.
-	<form action='whois.php' method='post'>
+	<p>Welcome to the 2018 review site.  To enter, please use the email address you used to register.  If you haven't registered yet, just enter your name and email address and you'll be registered.  I promise that you won't get any automated emails by providing an email.
+	<form id="index_form" method='post' action="/" enctype="multipart/form-data">
 		<div class="form-group">
 			<label for="reviewer_name">Name</label>
-			<input type="Name" class="form-control" name="reviewer_name" placeholder= 'Name' value={{name}} >
+			<input id="reviewr_name" type="Name" class="form-control" name="reviewer_name" placeholder= 'Name' >
 		</div>
 		<div class="form-group">
 			<label for="reviewer_email">Email address</label>
-			<input type="email" class="form-control" name="reviewer_email" placeholder= 'Email Address' value={{email}} >
+			<input id="reviewer_email" type="email" class="form-control" name="reviewer_email" placeholder= 'Email Address' >
 		</div>
 		<button type="submit" class="btn btn-default">Submit</button>
 	</form>

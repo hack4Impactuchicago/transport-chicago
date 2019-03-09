@@ -1,5 +1,5 @@
-from flask import Flask
-from flask import render_template
+from flask import Flask, request, render_template
+
 # runs on http://127.0.0.1:5000/
 # php files with functions called: read_del, read_submissions, review_reader
 # omnom.php has no html currently, post form submission page
@@ -29,6 +29,14 @@ def all_abstracts(): #all_abstracts.php
 @app.route('/upload')
 def upload(): #upload.html ... there's a ton of JS I didn't copy
     return render_template('upload.html')
+
+@app.route('/', methods=['POST'])
+def submit_name_email():
+# stores user input in email and in name for checking in database
+
+    email = request.form['reviewer_email']
+    name = request.form['reviewer_name']
+    return render_template('welcome.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
