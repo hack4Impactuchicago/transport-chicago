@@ -11,12 +11,12 @@
 	<form class='form-inline'>
 		<div class="form-group">
 			<label for="reviewer_email">Name</label>
-			<input name='reviewer_id' type="email" class="form-control" value=<?php echo "'" . $reviewer_name. "'";?> readonly="readonly">
+			<input name='reviewer_id' type="email" class="form-control" value= '{{name}}' readonly="readonly">
 			<label for="reviewer_email">Email address</label>
-			<input name='reviewer_id' type="email" class="form-control" value=<?php echo "'" . $reviewer_email. "'";?> readonly="readonly">
+			<input name='reviewer_id' type="email" class="form-control" value= '{{email}}' readonly="readonly">
 		</div>
 	</form>
-	<h4>You have reviewed <?php echo count($articles_done);?> abstracts.</h4>
+	<h4>You have reviewed {{numRead}} abstracts.</h4>
 	<p>Please try to review at least <strong>15 abstracts/proposals</strong>, not including ones that you've declined to review or have a conflict of interest with...</p>
 	<a class="btn btn-success" href="tagging.php" role="button">Read a New Abstract</a>
 	<a class="btn btn-danger" href="edit.php" role="button">Edit Submitted Reviews</a>
