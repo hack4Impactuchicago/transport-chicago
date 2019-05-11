@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, make_response, redirect, url_for, g
 import sqlite3
+import csv
 
 # runs on http://127.0.0.1:5000/
 # php files with functions called: read_del, read_submissions, review_reader
@@ -8,6 +9,71 @@ import sqlite3
 app = Flask(__name__)
 
 DATABASE = 'database.db'
+
+def read_del():
+    submissions = 'del_list.csv'
+    row = 0
+    data = []
+    with open (submissions, 'r') as sub_file:
+        sub_csv = csv.reader(open(sub_file))
+        for line in sub_csv:
+            if row == 0:
+                i = 0
+            else:
+                data.append(line[0].strip)
+            row += 1
+    sub_file.close()
+    return data
+
+def read_data():
+    submissions = 'submission_data.csv'
+    author_name = 'Name'
+    title_name = 'Proposal Title'
+    abstract_name = 'Abstract (limit 250 words)'
+    affil_name = 'Affiliation'
+    id_name = 'id'
+    keyword_name = "Keywords, separated by a semicolon (;)"
+    LO1_name = "Learning Objective 1"
+    LO2_name = "Learning Objective 2"
+    pro_app_name = "What information and insights will audience members be able to apply in professional practice?"
+    pres_name = "Preferred Presentation Format:"
+
+    ban = []
+    row = 0
+    data = []
+    with open (submissions, 'r') as sub_file:
+        sub_csv = csv.reader(open(sub_file))
+        for line in sub_csv:
+            if row == 0:
+                for field in len(sub_csv):
+                    switcher = {
+                        author_name: field_num,
+                        id_name: id_num,
+                        title_name: title_num,
+                        abstract_name: abstract_num,
+                        affil_name: affil_num,
+                        L01_name: L01_num,
+                        L02_name: L02_num,
+                        pro_app_name: pro_app_num,
+                        pres_name: pres_num
+                    }
+                    assign = switcher.get(line[field])
+                    assign = field
+            else:
+                if not (row - 1) in ban:
+                    tmp = {"id" : line[id_num],
+					"author" : line[field_num],
+					"title" : line[title_num],
+					"abstract" : line[abstract_num],
+					"affiliation" : line[affil_num],
+					"learn1" : line[LO1_num],
+					"learn2" : line[LO2_num],
+					"pres_type" : line[pres_num],
+					"application" : line[pro_app_num]}
+                    data.append(tmp)
+            row += 1
+    sub_file.close()
+    return data
 
 def get_db():
     db = getattr(g, '_database', None)
@@ -43,7 +109,12 @@ def index(): #index.php
 
 @app.route('/tagging')
 def tagging(): #tagging.php
-    return render_template('tagging.html')
+    rname = request.cookies.get('reviewer_name')
+    remail = request.cookies.get('reviewer_email')
+    if rname is None or remail is None:
+        return render_template('tagging.html', name="", email="")
+    else:
+        return render_template('tagging.html', name=rname, email=remail)
 
 @app.route('/welcome')
 def welcome(): #welcome.php
